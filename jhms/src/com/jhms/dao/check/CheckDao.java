@@ -1,4 +1,4 @@
-package com.jhms.dao;
+package com.jhms.dao.check;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -27,8 +27,8 @@ import com.jhms.entity.TChecks;
  * @author MyEclipse Persistence Tools
  */
 @Transactional
-public class TChecksDAO {
-	private static final Logger log = LoggerFactory.getLogger(TChecksDAO.class);
+public class CheckDao implements ICheckDao{
+	private static final Logger log = LoggerFactory.getLogger(CheckDao.class);
 	// property constants
 	public static final String FFEATURE = "ffeature";
 	public static final String FMEDIA_ID = "fmediaId";
@@ -187,7 +187,7 @@ public class TChecksDAO {
 		}
 	}
 
-	public static TChecksDAO getFromApplicationContext(ApplicationContext ctx) {
-		return (TChecksDAO) ctx.getBean("TChecksDAO");
+	public static CheckDao getFromApplicationContext(ApplicationContext ctx) {
+		return (CheckDao) ctx.getBean("TChecksDAO");
 	}
 }

@@ -1,7 +1,7 @@
-package com.jhms.dao;
+package com.jhms.dao.demand;
 
-import java.sql.Timestamp;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
@@ -13,24 +13,26 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jhms.entity.TAdvice;
+import com.jhms.entity.TDemands;
 
 /**
  * A data access object (DAO) providing persistence and search support for
- * TAdvice entities. Transaction control of the save(), update() and delete()
+ * TDemands entities. Transaction control of the save(), update() and delete()
  * operations can directly support Spring container-managed transactions or they
  * can be augmented to handle user-managed Spring transactions. Each of these
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see com.jhms.dao.TAdvice
+ * @see com.jhms.dao.TDemands
  * @author MyEclipse Persistence Tools
  */
 @Transactional
-public class TAdviceDAO {
-	private static final Logger log = LoggerFactory.getLogger(TAdviceDAO.class);
+public class DemandDao implements IDemandDao{
+	private static final Logger log = LoggerFactory
+			.getLogger(DemandDao.class);
 	// property constants
-	public static final String FCONTENT = "fcontent";
+	public static final String FNAME = "fname";
+	public static final String FSECOND_NAME = "fsecondName";
 
 	private SessionFactory sessionFactory;
 
@@ -46,8 +48,8 @@ public class TAdviceDAO {
 		// do nothing
 	}
 
-	public void save(TAdvice transientInstance) {
-		log.debug("saving TAdvice instance");
+	public void save(TDemands transientInstance) {
+		log.debug("saving TDemands instance");
 		try {
 			getCurrentSession().save(transientInstance);
 			log.debug("save successful");
@@ -57,8 +59,8 @@ public class TAdviceDAO {
 		}
 	}
 
-	public void delete(TAdvice persistentInstance) {
-		log.debug("deleting TAdvice instance");
+	public void delete(TDemands persistentInstance) {
+		log.debug("deleting TDemands instance");
 		try {
 			getCurrentSession().delete(persistentInstance);
 			log.debug("delete successful");
@@ -68,11 +70,11 @@ public class TAdviceDAO {
 		}
 	}
 
-	public TAdvice findById(java.lang.String id) {
-		log.debug("getting TAdvice instance with id: " + id);
+	public TDemands findById(java.lang.String id) {
+		log.debug("getting TDemands instance with id: " + id);
 		try {
-			TAdvice instance = (TAdvice) getCurrentSession().get(
-					"com.jhms.dao.TAdvice", id);
+			TDemands instance = (TDemands) getCurrentSession().get(
+					"com.jhms.dao.TDemands", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -80,11 +82,11 @@ public class TAdviceDAO {
 		}
 	}
 
-	public List findByExample(TAdvice instance) {
-		log.debug("finding TAdvice instance by example");
+	public List findByExample(TDemands instance) {
+		log.debug("finding TDemands instance by example");
 		try {
 			List results = getCurrentSession()
-					.createCriteria("com.jhms.dao.TAdvice")
+					.createCriteria("com.jhms.dao.TDemands")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
@@ -96,10 +98,10 @@ public class TAdviceDAO {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding TAdvice instance with property: " + propertyName
+		log.debug("finding TDemands instance with property: " + propertyName
 				+ ", value: " + value);
 		try {
-			String queryString = "from TAdvice as model where model."
+			String queryString = "from TDemands as model where model."
 					+ propertyName + "= ?";
 			Query queryObject = getCurrentSession().createQuery(queryString);
 			queryObject.setParameter(0, value);
@@ -110,14 +112,18 @@ public class TAdviceDAO {
 		}
 	}
 
-	public List findByFcontent(Object fcontent) {
-		return findByProperty(FCONTENT, fcontent);
+	public List findByFname(Object fname) {
+		return findByProperty(FNAME, fname);
+	}
+
+	public List findByFsecondName(Object fsecondName) {
+		return findByProperty(FSECOND_NAME, fsecondName);
 	}
 
 	public List findAll() {
-		log.debug("finding all TAdvice instances");
+		log.debug("finding all TDemands instances");
 		try {
-			String queryString = "from TAdvice";
+			String queryString = "from TDemands";
 			Query queryObject = getCurrentSession().createQuery(queryString);
 			return queryObject.list();
 		} catch (RuntimeException re) {
@@ -126,10 +132,10 @@ public class TAdviceDAO {
 		}
 	}
 
-	public TAdvice merge(TAdvice detachedInstance) {
-		log.debug("merging TAdvice instance");
+	public TDemands merge(TDemands detachedInstance) {
+		log.debug("merging TDemands instance");
 		try {
-			TAdvice result = (TAdvice) getCurrentSession().merge(
+			TDemands result = (TDemands) getCurrentSession().merge(
 					detachedInstance);
 			log.debug("merge successful");
 			return result;
@@ -139,8 +145,8 @@ public class TAdviceDAO {
 		}
 	}
 
-	public void attachDirty(TAdvice instance) {
-		log.debug("attaching dirty TAdvice instance");
+	public void attachDirty(TDemands instance) {
+		log.debug("attaching dirty TDemands instance");
 		try {
 			getCurrentSession().saveOrUpdate(instance);
 			log.debug("attach successful");
@@ -150,8 +156,8 @@ public class TAdviceDAO {
 		}
 	}
 
-	public void attachClean(TAdvice instance) {
-		log.debug("attaching clean TAdvice instance");
+	public void attachClean(TDemands instance) {
+		log.debug("attaching clean TDemands instance");
 		try {
 			getCurrentSession().buildLockRequest(LockOptions.NONE).lock(
 					instance);
@@ -162,7 +168,7 @@ public class TAdviceDAO {
 		}
 	}
 
-	public static TAdviceDAO getFromApplicationContext(ApplicationContext ctx) {
-		return (TAdviceDAO) ctx.getBean("TAdviceDAO");
+	public static DemandDao getFromApplicationContext(ApplicationContext ctx) {
+		return (DemandDao) ctx.getBean("TDemandsDAO");
 	}
 }

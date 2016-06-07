@@ -1,5 +1,6 @@
-package com.jhms.dao;
+package com.jhms.dao.advice;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.hibernate.LockOptions;
@@ -12,30 +13,24 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jhms.entity.TChanpins;
+import com.jhms.entity.TAdvice;
 
 /**
  * A data access object (DAO) providing persistence and search support for
- * TChanpins entities. Transaction control of the save(), update() and delete()
+ * TAdvice entities. Transaction control of the save(), update() and delete()
  * operations can directly support Spring container-managed transactions or they
  * can be augmented to handle user-managed Spring transactions. Each of these
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see com.jhms.dao.TChanpins
+ * @see com.jhms.dao.TAdvice
  * @author MyEclipse Persistence Tools
  */
 @Transactional
-public class TChanpinsDAO {
-	private static final Logger log = LoggerFactory
-			.getLogger(TChanpinsDAO.class);
+public class AdviceDao implements IAdviceDao{
+	private static final Logger log = LoggerFactory.getLogger(AdviceDao.class);
 	// property constants
-	public static final String FNAME = "fname";
-	public static final String FIMAGE = "fimage";
-	public static final String FZONE = "fzone";
-	public static final String FAMOUNT = "famount";
-	public static final String FINTRODUCE = "fintroduce";
-	public static final String FURL = "furl";
+	public static final String FCONTENT = "fcontent";
 
 	private SessionFactory sessionFactory;
 
@@ -51,8 +46,8 @@ public class TChanpinsDAO {
 		// do nothing
 	}
 
-	public void save(TChanpins transientInstance) {
-		log.debug("saving TChanpins instance");
+	public void save(TAdvice transientInstance) {
+		log.debug("saving TAdvice instance");
 		try {
 			getCurrentSession().save(transientInstance);
 			log.debug("save successful");
@@ -62,8 +57,8 @@ public class TChanpinsDAO {
 		}
 	}
 
-	public void delete(TChanpins persistentInstance) {
-		log.debug("deleting TChanpins instance");
+	public void delete(TAdvice persistentInstance) {
+		log.debug("deleting TAdvice instance");
 		try {
 			getCurrentSession().delete(persistentInstance);
 			log.debug("delete successful");
@@ -73,11 +68,11 @@ public class TChanpinsDAO {
 		}
 	}
 
-	public TChanpins findById(java.lang.String id) {
-		log.debug("getting TChanpins instance with id: " + id);
+	public TAdvice findById(java.lang.String id) {
+		log.debug("getting TAdvice instance with id: " + id);
 		try {
-			TChanpins instance = (TChanpins) getCurrentSession().get(
-					"com.jhms.dao.TChanpins", id);
+			TAdvice instance = (TAdvice) getCurrentSession().get(
+					"com.jhms.dao.TAdvice", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -85,11 +80,11 @@ public class TChanpinsDAO {
 		}
 	}
 
-	public List findByExample(TChanpins instance) {
-		log.debug("finding TChanpins instance by example");
+	public List findByExample(TAdvice instance) {
+		log.debug("finding TAdvice instance by example");
 		try {
 			List results = getCurrentSession()
-					.createCriteria("com.jhms.dao.TChanpins")
+					.createCriteria("com.jhms.dao.TAdvice")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
@@ -101,10 +96,10 @@ public class TChanpinsDAO {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding TChanpins instance with property: " + propertyName
+		log.debug("finding TAdvice instance with property: " + propertyName
 				+ ", value: " + value);
 		try {
-			String queryString = "from TChanpins as model where model."
+			String queryString = "from TAdvice as model where model."
 					+ propertyName + "= ?";
 			Query queryObject = getCurrentSession().createQuery(queryString);
 			queryObject.setParameter(0, value);
@@ -115,34 +110,14 @@ public class TChanpinsDAO {
 		}
 	}
 
-	public List findByFname(Object fname) {
-		return findByProperty(FNAME, fname);
-	}
-
-	public List findByFimage(Object fimage) {
-		return findByProperty(FIMAGE, fimage);
-	}
-
-	public List findByFzone(Object fzone) {
-		return findByProperty(FZONE, fzone);
-	}
-
-	public List findByFamount(Object famount) {
-		return findByProperty(FAMOUNT, famount);
-	}
-
-	public List findByFintroduce(Object fintroduce) {
-		return findByProperty(FINTRODUCE, fintroduce);
-	}
-
-	public List findByFurl(Object furl) {
-		return findByProperty(FURL, furl);
+	public List findByFcontent(Object fcontent) {
+		return findByProperty(FCONTENT, fcontent);
 	}
 
 	public List findAll() {
-		log.debug("finding all TChanpins instances");
+		log.debug("finding all TAdvice instances");
 		try {
-			String queryString = "from TChanpins";
+			String queryString = "from TAdvice";
 			Query queryObject = getCurrentSession().createQuery(queryString);
 			return queryObject.list();
 		} catch (RuntimeException re) {
@@ -151,10 +126,10 @@ public class TChanpinsDAO {
 		}
 	}
 
-	public TChanpins merge(TChanpins detachedInstance) {
-		log.debug("merging TChanpins instance");
+	public TAdvice merge(TAdvice detachedInstance) {
+		log.debug("merging TAdvice instance");
 		try {
-			TChanpins result = (TChanpins) getCurrentSession().merge(
+			TAdvice result = (TAdvice) getCurrentSession().merge(
 					detachedInstance);
 			log.debug("merge successful");
 			return result;
@@ -164,8 +139,8 @@ public class TChanpinsDAO {
 		}
 	}
 
-	public void attachDirty(TChanpins instance) {
-		log.debug("attaching dirty TChanpins instance");
+	public void attachDirty(TAdvice instance) {
+		log.debug("attaching dirty TAdvice instance");
 		try {
 			getCurrentSession().saveOrUpdate(instance);
 			log.debug("attach successful");
@@ -175,8 +150,8 @@ public class TChanpinsDAO {
 		}
 	}
 
-	public void attachClean(TChanpins instance) {
-		log.debug("attaching clean TChanpins instance");
+	public void attachClean(TAdvice instance) {
+		log.debug("attaching clean TAdvice instance");
 		try {
 			getCurrentSession().buildLockRequest(LockOptions.NONE).lock(
 					instance);
@@ -187,7 +162,7 @@ public class TChanpinsDAO {
 		}
 	}
 
-	public static TChanpinsDAO getFromApplicationContext(ApplicationContext ctx) {
-		return (TChanpinsDAO) ctx.getBean("TChanpinsDAO");
+	public static AdviceDao getFromApplicationContext(ApplicationContext ctx) {
+		return (AdviceDao) ctx.getBean("TAdviceDAO");
 	}
 }

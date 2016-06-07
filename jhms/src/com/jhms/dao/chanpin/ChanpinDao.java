@@ -1,7 +1,6 @@
-package com.jhms.dao;
+package com.jhms.dao.chanpin;
 
 import java.util.List;
-import java.util.Set;
 
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
@@ -13,26 +12,30 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jhms.entity.TDemands;
+import com.jhms.entity.TChanpins;
 
 /**
  * A data access object (DAO) providing persistence and search support for
- * TDemands entities. Transaction control of the save(), update() and delete()
+ * TChanpins entities. Transaction control of the save(), update() and delete()
  * operations can directly support Spring container-managed transactions or they
  * can be augmented to handle user-managed Spring transactions. Each of these
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see com.jhms.dao.TDemands
+ * @see com.jhms.dao.TChanpins
  * @author MyEclipse Persistence Tools
  */
 @Transactional
-public class TDemandsDAO {
+public class ChanpinDao implements IChanpinDao{
 	private static final Logger log = LoggerFactory
-			.getLogger(TDemandsDAO.class);
+			.getLogger(ChanpinDao.class);
 	// property constants
 	public static final String FNAME = "fname";
-	public static final String FSECOND_NAME = "fsecondName";
+	public static final String FIMAGE = "fimage";
+	public static final String FZONE = "fzone";
+	public static final String FAMOUNT = "famount";
+	public static final String FINTRODUCE = "fintroduce";
+	public static final String FURL = "furl";
 
 	private SessionFactory sessionFactory;
 
@@ -48,8 +51,8 @@ public class TDemandsDAO {
 		// do nothing
 	}
 
-	public void save(TDemands transientInstance) {
-		log.debug("saving TDemands instance");
+	public void save(TChanpins transientInstance) {
+		log.debug("saving TChanpins instance");
 		try {
 			getCurrentSession().save(transientInstance);
 			log.debug("save successful");
@@ -59,8 +62,8 @@ public class TDemandsDAO {
 		}
 	}
 
-	public void delete(TDemands persistentInstance) {
-		log.debug("deleting TDemands instance");
+	public void delete(TChanpins persistentInstance) {
+		log.debug("deleting TChanpins instance");
 		try {
 			getCurrentSession().delete(persistentInstance);
 			log.debug("delete successful");
@@ -70,11 +73,11 @@ public class TDemandsDAO {
 		}
 	}
 
-	public TDemands findById(java.lang.String id) {
-		log.debug("getting TDemands instance with id: " + id);
+	public TChanpins findById(java.lang.String id) {
+		log.debug("getting TChanpins instance with id: " + id);
 		try {
-			TDemands instance = (TDemands) getCurrentSession().get(
-					"com.jhms.dao.TDemands", id);
+			TChanpins instance = (TChanpins) getCurrentSession().get(
+					"com.jhms.dao.TChanpins", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -82,11 +85,11 @@ public class TDemandsDAO {
 		}
 	}
 
-	public List findByExample(TDemands instance) {
-		log.debug("finding TDemands instance by example");
+	public List findByExample(TChanpins instance) {
+		log.debug("finding TChanpins instance by example");
 		try {
 			List results = getCurrentSession()
-					.createCriteria("com.jhms.dao.TDemands")
+					.createCriteria("com.jhms.dao.TChanpins")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
@@ -98,10 +101,10 @@ public class TDemandsDAO {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding TDemands instance with property: " + propertyName
+		log.debug("finding TChanpins instance with property: " + propertyName
 				+ ", value: " + value);
 		try {
-			String queryString = "from TDemands as model where model."
+			String queryString = "from TChanpins as model where model."
 					+ propertyName + "= ?";
 			Query queryObject = getCurrentSession().createQuery(queryString);
 			queryObject.setParameter(0, value);
@@ -116,14 +119,30 @@ public class TDemandsDAO {
 		return findByProperty(FNAME, fname);
 	}
 
-	public List findByFsecondName(Object fsecondName) {
-		return findByProperty(FSECOND_NAME, fsecondName);
+	public List findByFimage(Object fimage) {
+		return findByProperty(FIMAGE, fimage);
+	}
+
+	public List findByFzone(Object fzone) {
+		return findByProperty(FZONE, fzone);
+	}
+
+	public List findByFamount(Object famount) {
+		return findByProperty(FAMOUNT, famount);
+	}
+
+	public List findByFintroduce(Object fintroduce) {
+		return findByProperty(FINTRODUCE, fintroduce);
+	}
+
+	public List findByFurl(Object furl) {
+		return findByProperty(FURL, furl);
 	}
 
 	public List findAll() {
-		log.debug("finding all TDemands instances");
+		log.debug("finding all TChanpins instances");
 		try {
-			String queryString = "from TDemands";
+			String queryString = "from TChanpins";
 			Query queryObject = getCurrentSession().createQuery(queryString);
 			return queryObject.list();
 		} catch (RuntimeException re) {
@@ -132,10 +151,10 @@ public class TDemandsDAO {
 		}
 	}
 
-	public TDemands merge(TDemands detachedInstance) {
-		log.debug("merging TDemands instance");
+	public TChanpins merge(TChanpins detachedInstance) {
+		log.debug("merging TChanpins instance");
 		try {
-			TDemands result = (TDemands) getCurrentSession().merge(
+			TChanpins result = (TChanpins) getCurrentSession().merge(
 					detachedInstance);
 			log.debug("merge successful");
 			return result;
@@ -145,8 +164,8 @@ public class TDemandsDAO {
 		}
 	}
 
-	public void attachDirty(TDemands instance) {
-		log.debug("attaching dirty TDemands instance");
+	public void attachDirty(TChanpins instance) {
+		log.debug("attaching dirty TChanpins instance");
 		try {
 			getCurrentSession().saveOrUpdate(instance);
 			log.debug("attach successful");
@@ -156,8 +175,8 @@ public class TDemandsDAO {
 		}
 	}
 
-	public void attachClean(TDemands instance) {
-		log.debug("attaching clean TDemands instance");
+	public void attachClean(TChanpins instance) {
+		log.debug("attaching clean TChanpins instance");
 		try {
 			getCurrentSession().buildLockRequest(LockOptions.NONE).lock(
 					instance);
@@ -168,7 +187,7 @@ public class TDemandsDAO {
 		}
 	}
 
-	public static TDemandsDAO getFromApplicationContext(ApplicationContext ctx) {
-		return (TDemandsDAO) ctx.getBean("TDemandsDAO");
+	public static ChanpinDao getFromApplicationContext(ApplicationContext ctx) {
+		return (ChanpinDao) ctx.getBean("TChanpinsDAO");
 	}
 }

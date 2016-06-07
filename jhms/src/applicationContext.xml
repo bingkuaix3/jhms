@@ -58,12 +58,12 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="adviceDao" class="com.jhms.dao.TAdviceDAO">
+	<bean id="adviceDao" class="com.jhms.dao.advice.AdviceDao">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="chanpinDao" class="com.jhms.dao.TChanpinsDAO">
+	<bean id="chanpinDao" class="com.jhms.dao.chanpin.ChanpinDao">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
@@ -124,7 +124,7 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="checkDao" class="com.jhms.dao.TChecksDAO">
+	<bean id="checkDao" class="com.jhms.dao.check.CheckDao">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
@@ -139,7 +139,7 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="demandDao" class="com.jhms.dao.TDemandsDAO">
+	<bean id="demandDao" class="com.jhms.dao.demand.DemandDao">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
