@@ -73,7 +73,7 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="adminDao" class="com.jhms.dao.TAdminDAO">
+	<bean id="adminDao" class="com.jhms.dao.admin.AdminDao">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
@@ -98,7 +98,7 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="dianjiDao" class="com.jhms.dao.DianjiDAO">
+	<bean id="dianjiDao" class="com.jhms.dao.dianji.DianjiDao">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>

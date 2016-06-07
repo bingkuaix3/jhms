@@ -1,6 +1,5 @@
-package com.jhms.dao;
+package com.jhms.dao.admin;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.hibernate.LockOptions;
@@ -13,25 +12,25 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jhms.entity.Dianji;
+import com.jhms.entity.TAdmin;
 
 /**
  * A data access object (DAO) providing persistence and search support for
- * Dianji entities. Transaction control of the save(), update() and delete()
+ * TAdmin entities. Transaction control of the save(), update() and delete()
  * operations can directly support Spring container-managed transactions or they
  * can be augmented to handle user-managed Spring transactions. Each of these
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see com.jhms.dao.Dianji
+ * @see com.jhms.dao.TAdmin
  * @author MyEclipse Persistence Tools
  */
 @Transactional
-public class DianjiDAO {
-	private static final Logger log = LoggerFactory.getLogger(DianjiDAO.class);
+public class AdminDao implements IAdminDao{
+	private static final Logger log = LoggerFactory.getLogger(AdminDao.class);
 	// property constants
-	public static final String FTYPE = "ftype";
-	public static final String FTYPE_NAME = "ftypeName";
+	public static final String FNAME = "fname";
+	public static final String FPWD = "fpwd";
 
 	private SessionFactory sessionFactory;
 
@@ -47,8 +46,8 @@ public class DianjiDAO {
 		// do nothing
 	}
 
-	public void save(Dianji transientInstance) {
-		log.debug("saving Dianji instance");
+	public void save(TAdmin transientInstance) {
+		log.debug("saving TAdmin instance");
 		try {
 			getCurrentSession().save(transientInstance);
 			log.debug("save successful");
@@ -58,8 +57,8 @@ public class DianjiDAO {
 		}
 	}
 
-	public void delete(Dianji persistentInstance) {
-		log.debug("deleting Dianji instance");
+	public void delete(TAdmin persistentInstance) {
+		log.debug("deleting TAdmin instance");
 		try {
 			getCurrentSession().delete(persistentInstance);
 			log.debug("delete successful");
@@ -69,11 +68,11 @@ public class DianjiDAO {
 		}
 	}
 
-	public Dianji findById(java.lang.String id) {
-		log.debug("getting Dianji instance with id: " + id);
+	public TAdmin findById(java.lang.String id) {
+		log.debug("getting TAdmin instance with id: " + id);
 		try {
-			Dianji instance = (Dianji) getCurrentSession().get(
-					"com.jhms.dao.Dianji", id);
+			TAdmin instance = (TAdmin) getCurrentSession().get(
+					"com.jhms.dao.TAdmin", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -81,11 +80,11 @@ public class DianjiDAO {
 		}
 	}
 
-	public List findByExample(Dianji instance) {
-		log.debug("finding Dianji instance by example");
+	public List findByExample(TAdmin instance) {
+		log.debug("finding TAdmin instance by example");
 		try {
 			List results = getCurrentSession()
-					.createCriteria("com.jhms.dao.Dianji")
+					.createCriteria("com.jhms.dao.TAdmin")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
@@ -97,10 +96,10 @@ public class DianjiDAO {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding Dianji instance with property: " + propertyName
+		log.debug("finding TAdmin instance with property: " + propertyName
 				+ ", value: " + value);
 		try {
-			String queryString = "from Dianji as model where model."
+			String queryString = "from TAdmin as model where model."
 					+ propertyName + "= ?";
 			Query queryObject = getCurrentSession().createQuery(queryString);
 			queryObject.setParameter(0, value);
@@ -111,18 +110,18 @@ public class DianjiDAO {
 		}
 	}
 
-	public List findByFtype(Object ftype) {
-		return findByProperty(FTYPE, ftype);
+	public List findByFname(Object fname) {
+		return findByProperty(FNAME, fname);
 	}
 
-	public List findByFtypeName(Object ftypeName) {
-		return findByProperty(FTYPE_NAME, ftypeName);
+	public List findByFpwd(Object fpwd) {
+		return findByProperty(FPWD, fpwd);
 	}
 
 	public List findAll() {
-		log.debug("finding all Dianji instances");
+		log.debug("finding all TAdmin instances");
 		try {
-			String queryString = "from Dianji";
+			String queryString = "from TAdmin";
 			Query queryObject = getCurrentSession().createQuery(queryString);
 			return queryObject.list();
 		} catch (RuntimeException re) {
@@ -131,10 +130,10 @@ public class DianjiDAO {
 		}
 	}
 
-	public Dianji merge(Dianji detachedInstance) {
-		log.debug("merging Dianji instance");
+	public TAdmin merge(TAdmin detachedInstance) {
+		log.debug("merging TAdmin instance");
 		try {
-			Dianji result = (Dianji) getCurrentSession()
+			TAdmin result = (TAdmin) getCurrentSession()
 					.merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
@@ -144,8 +143,8 @@ public class DianjiDAO {
 		}
 	}
 
-	public void attachDirty(Dianji instance) {
-		log.debug("attaching dirty Dianji instance");
+	public void attachDirty(TAdmin instance) {
+		log.debug("attaching dirty TAdmin instance");
 		try {
 			getCurrentSession().saveOrUpdate(instance);
 			log.debug("attach successful");
@@ -155,8 +154,8 @@ public class DianjiDAO {
 		}
 	}
 
-	public void attachClean(Dianji instance) {
-		log.debug("attaching clean Dianji instance");
+	public void attachClean(TAdmin instance) {
+		log.debug("attaching clean TAdmin instance");
 		try {
 			getCurrentSession().buildLockRequest(LockOptions.NONE).lock(
 					instance);
@@ -167,7 +166,7 @@ public class DianjiDAO {
 		}
 	}
 
-	public static DianjiDAO getFromApplicationContext(ApplicationContext ctx) {
-		return (DianjiDAO) ctx.getBean("DianjiDAO");
+	public static AdminDao getFromApplicationContext(ApplicationContext ctx) {
+		return (AdminDao) ctx.getBean("TAdminDAO");
 	}
 }
