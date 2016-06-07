@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd"
+	xmlns:tx="http://www.springframework.org/schema/tx">
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url"
+			value="jdbc:mysql://121.40.141.2:3306/jhdb?useUicode=true&amp;charactorEncoding=utf-8">
+		</property>
+		<property name="username" value="root"></property>
+		<property name="password" value="JianhaoDB@365"></property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/jhms/entity/TChanpins.hbm.xml</value>
+				<value>com/jhms/entity/TQuestions.hbm.xml</value>
+				<value>com/jhms/entity/TSolutions.hbm.xml</value>
+				<value>com/jhms/entity/TAdvice.hbm.xml</value>
+				<value>com/jhms/entity/TPhysiques.hbm.xml</value>
+				<value>com/jhms/entity/TZhanshis.hbm.xml</value>
+				<value>com/jhms/entity/Dianji.hbm.xml</value>
+				<value>com/jhms/entity/TAdmin.hbm.xml</value>
+				<value>com/jhms/entity/TDianjis.hbm.xml</value>
+				<value>com/jhms/entity/TChecks.hbm.xml</value>
+				<value>com/jhms/entity/TDemands.hbm.xml</value>
+				<value>com/jhms/entity/TJianchis.hbm.xml</value>
+				<value>com/jhms/entity/TShiyongs.hbm.xml</value>
+				<value>com/jhms/entity/TPingluns.hbm.xml</value>
+				<value>com/jhms/entity/TJianchilist.hbm.xml</value>
+				<value>com/jhms/entity/TJianchitypes.hbm.xml</value>
+				<value>com/jhms/entity/THuanjiepilaos.hbm.xml</value>
+				<value>com/jhms/entity/TDenglus.hbm.xml</value>
+				<value>com/jhms/entity/TUsers.hbm.xml</value></list>
+		</property></bean>
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+</beans>
