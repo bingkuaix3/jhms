@@ -1,4 +1,4 @@
-package com.jhms.dao;
+package com.jhms.dao.shiyong;
 
 import java.util.List;
 
@@ -26,9 +26,9 @@ import com.jhms.entity.TShiyongs;
  * @author MyEclipse Persistence Tools
  */
 @Transactional
-public class TShiyongsDAO {
+public class ShiyongDao implements IShiyongDao{
 	private static final Logger log = LoggerFactory
-			.getLogger(TShiyongsDAO.class);
+			.getLogger(ShiyongDao.class);
 	// property constants
 	public static final String FCHA = "fcha";
 	public static final String FBAGUAN = "fbaguan";
@@ -182,7 +182,7 @@ public class TShiyongsDAO {
 		}
 	}
 
-	public static TShiyongsDAO getFromApplicationContext(ApplicationContext ctx) {
-		return (TShiyongsDAO) ctx.getBean("TShiyongsDAO");
+	public static ShiyongDao getFromApplicationContext(ApplicationContext ctx) {
+		return (ShiyongDao) ctx.getBean("shiyongDao");
 	}
 }

@@ -1,4 +1,4 @@
-package com.jhms.dao;
+package com.jhms.dao.denglu;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -13,25 +13,24 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jhms.entity.TPingluns;
+import com.jhms.entity.TDenglus;
 
 /**
  * A data access object (DAO) providing persistence and search support for
- * TPingluns entities. Transaction control of the save(), update() and delete()
+ * TDenglus entities. Transaction control of the save(), update() and delete()
  * operations can directly support Spring container-managed transactions or they
  * can be augmented to handle user-managed Spring transactions. Each of these
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see com.jhms.dao.TPingluns
+ * @see com.jhms.dao.TDenglus
  * @author MyEclipse Persistence Tools
  */
 @Transactional
-public class TPinglunsDAO {
+public class DengluDao implements IDengluDao{
 	private static final Logger log = LoggerFactory
-			.getLogger(TPinglunsDAO.class);
+			.getLogger(DengluDao.class);
 	// property constants
-	public static final String FCONTENT = "fcontent";
 
 	private SessionFactory sessionFactory;
 
@@ -47,8 +46,8 @@ public class TPinglunsDAO {
 		// do nothing
 	}
 
-	public void save(TPingluns transientInstance) {
-		log.debug("saving TPingluns instance");
+	public void save(TDenglus transientInstance) {
+		log.debug("saving TDenglus instance");
 		try {
 			getCurrentSession().save(transientInstance);
 			log.debug("save successful");
@@ -58,8 +57,8 @@ public class TPinglunsDAO {
 		}
 	}
 
-	public void delete(TPingluns persistentInstance) {
-		log.debug("deleting TPingluns instance");
+	public void delete(TDenglus persistentInstance) {
+		log.debug("deleting TDenglus instance");
 		try {
 			getCurrentSession().delete(persistentInstance);
 			log.debug("delete successful");
@@ -69,11 +68,11 @@ public class TPinglunsDAO {
 		}
 	}
 
-	public TPingluns findById(java.lang.String id) {
-		log.debug("getting TPingluns instance with id: " + id);
+	public TDenglus findById(java.lang.String id) {
+		log.debug("getting TDenglus instance with id: " + id);
 		try {
-			TPingluns instance = (TPingluns) getCurrentSession().get(
-					"com.jhms.dao.TPingluns", id);
+			TDenglus instance = (TDenglus) getCurrentSession().get(
+					"com.jhms.dao.TDenglus", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -81,11 +80,11 @@ public class TPinglunsDAO {
 		}
 	}
 
-	public List findByExample(TPingluns instance) {
-		log.debug("finding TPingluns instance by example");
+	public List findByExample(TDenglus instance) {
+		log.debug("finding TDenglus instance by example");
 		try {
 			List results = getCurrentSession()
-					.createCriteria("com.jhms.dao.TPingluns")
+					.createCriteria("com.jhms.dao.TDenglus")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
@@ -97,10 +96,10 @@ public class TPinglunsDAO {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding TPingluns instance with property: " + propertyName
+		log.debug("finding TDenglus instance with property: " + propertyName
 				+ ", value: " + value);
 		try {
-			String queryString = "from TPingluns as model where model."
+			String queryString = "from TDenglus as model where model."
 					+ propertyName + "= ?";
 			Query queryObject = getCurrentSession().createQuery(queryString);
 			queryObject.setParameter(0, value);
@@ -111,14 +110,10 @@ public class TPinglunsDAO {
 		}
 	}
 
-	public List findByFcontent(Object fcontent) {
-		return findByProperty(FCONTENT, fcontent);
-	}
-
 	public List findAll() {
-		log.debug("finding all TPingluns instances");
+		log.debug("finding all TDenglus instances");
 		try {
-			String queryString = "from TPingluns";
+			String queryString = "from TDenglus";
 			Query queryObject = getCurrentSession().createQuery(queryString);
 			return queryObject.list();
 		} catch (RuntimeException re) {
@@ -127,10 +122,10 @@ public class TPinglunsDAO {
 		}
 	}
 
-	public TPingluns merge(TPingluns detachedInstance) {
-		log.debug("merging TPingluns instance");
+	public TDenglus merge(TDenglus detachedInstance) {
+		log.debug("merging TDenglus instance");
 		try {
-			TPingluns result = (TPingluns) getCurrentSession().merge(
+			TDenglus result = (TDenglus) getCurrentSession().merge(
 					detachedInstance);
 			log.debug("merge successful");
 			return result;
@@ -140,8 +135,8 @@ public class TPinglunsDAO {
 		}
 	}
 
-	public void attachDirty(TPingluns instance) {
-		log.debug("attaching dirty TPingluns instance");
+	public void attachDirty(TDenglus instance) {
+		log.debug("attaching dirty TDenglus instance");
 		try {
 			getCurrentSession().saveOrUpdate(instance);
 			log.debug("attach successful");
@@ -151,8 +146,8 @@ public class TPinglunsDAO {
 		}
 	}
 
-	public void attachClean(TPingluns instance) {
-		log.debug("attaching clean TPingluns instance");
+	public void attachClean(TDenglus instance) {
+		log.debug("attaching clean TDenglus instance");
 		try {
 			getCurrentSession().buildLockRequest(LockOptions.NONE).lock(
 					instance);
@@ -163,7 +158,7 @@ public class TPinglunsDAO {
 		}
 	}
 
-	public static TPinglunsDAO getFromApplicationContext(ApplicationContext ctx) {
-		return (TPinglunsDAO) ctx.getBean("TPinglunsDAO");
+	public static DengluDao getFromApplicationContext(ApplicationContext ctx) {
+		return (DengluDao) ctx.getBean("TDenglusDAO");
 	}
 }

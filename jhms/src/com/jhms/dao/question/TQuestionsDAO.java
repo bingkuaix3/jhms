@@ -1,4 +1,4 @@
-package com.jhms.dao;
+package com.jhms.dao.question;
 
 import java.util.List;
 

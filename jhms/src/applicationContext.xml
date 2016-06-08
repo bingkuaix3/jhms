@@ -68,7 +68,7 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="shiyongDao" class="com.jhms.dao.TShiyongsDAO">
+	<bean id="shiyongDao" class="com.jhms.dao.shiyong.ShiyongDao">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
@@ -78,22 +78,22 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="dengluDao" class="com.jhms.dao.TDenglusDAO">
+	<bean id="dengluDao" class="com.jhms.dao.denglu.DengluDao">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="questionDao" class="com.jhms.dao.TQuestionsDAO">
+	<bean id="questionDao" class="com.jhms.dao.question.TQuestionsDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="physiqueDao" class="com.jhms.dao.TPhysiquesDAO">
+	<bean id="physiqueDao" class="com.jhms.dao.physique.PhysiqueDao">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="jianchiDao" class="com.jhms.dao.TJianchisDAO">
+	<bean id="jianchiDao" class="com.jhms.dao.jianchi.JianchiDao">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
@@ -103,7 +103,7 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="pinglunDao" class="com.jhms.dao.TPinglunsDAO">
+	<bean id="pinglunDao" class="com.jhms.dao.pinglun.PinglunDao">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
@@ -114,7 +114,7 @@
 		</property>
 	</bean>
 	<bean id="huanjiepilaoDao"
-		class="com.jhms.dao.THuanjiepilaosDAO">
+		class="com.jhms.dao.huanjie.HuanjiepilaoDao">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
@@ -134,7 +134,7 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="jianchitypeDao" class="com.jhms.dao.TJianchitypesDAO">
+	<bean id="jianchitypeDao" class="com.jhms.dao.jianchitype.JianchitypeDao">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>

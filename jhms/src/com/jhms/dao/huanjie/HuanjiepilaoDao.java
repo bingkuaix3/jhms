@@ -1,4 +1,4 @@
-package com.jhms.dao;
+package com.jhms.dao.huanjie;
 
 import java.util.List;
 
@@ -26,9 +26,9 @@ import com.jhms.entity.THuanjiepilaos;
  * @author MyEclipse Persistence Tools
  */
 @Transactional
-public class THuanjiepilaosDAO {
+public class HuanjiepilaoDao implements IHuanjiepilaoDao{
 	private static final Logger log = LoggerFactory
-			.getLogger(THuanjiepilaosDAO.class);
+			.getLogger(HuanjiepilaoDao.class);
 	// property constants
 	public static final String FTYPEB = "ftypeb";
 	public static final String FTYPEB_NAME = "ftypebName";
@@ -222,8 +222,8 @@ public class THuanjiepilaosDAO {
 		}
 	}
 
-	public static THuanjiepilaosDAO getFromApplicationContext(
+	public static HuanjiepilaoDao getFromApplicationContext(
 			ApplicationContext ctx) {
-		return (THuanjiepilaosDAO) ctx.getBean("THuanjiepilaosDAO");
+		return (HuanjiepilaoDao) ctx.getBean("THuanjiepilaosDAO");
 	}
 }

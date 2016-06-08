@@ -1,4 +1,4 @@
-package com.jhms.dao;
+package com.jhms.dao.jianchitype;
 
 import java.util.List;
 import java.util.Set;
@@ -13,31 +13,26 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jhms.entity.TPhysiques;
+import com.jhms.entity.TJianchitypes;
 
 /**
  * A data access object (DAO) providing persistence and search support for
- * TPhysiques entities. Transaction control of the save(), update() and delete()
- * operations can directly support Spring container-managed transactions or they
- * can be augmented to handle user-managed Spring transactions. Each of these
- * methods provides additional information for how to configure it for the
- * desired type of transaction control.
+ * TJianchitypes entities. Transaction control of the save(), update() and
+ * delete() operations can directly support Spring container-managed
+ * transactions or they can be augmented to handle user-managed Spring
+ * transactions. Each of these methods provides additional information for how
+ * to configure it for the desired type of transaction control.
  * 
- * @see com.jhms.dao.TPhysiques
+ * @see com.jhms.dao.TJianchitypes
  * @author MyEclipse Persistence Tools
  */
 @Transactional
-public class TPhysiquesDAO {
+public class JianchitypeDao implements IJianchitypeDao{
 	private static final Logger log = LoggerFactory
-			.getLogger(TPhysiquesDAO.class);
+			.getLogger(JianchitypeDao.class);
 	// property constants
 	public static final String FNAME = "fname";
-	public static final String FGUANLIAN = "fguanlian";
-	public static final String FINTRODUCE = "fintroduce";
-	public static final String FREASON = "freason";
-	public static final String FLEAD = "flead";
-	public static final String FCHARACTOR = "fcharactor";
-	public static final String FIMAGE = "fimage";
+	public static final String FBELONG_TYPE = "fbelongType";
 
 	private SessionFactory sessionFactory;
 
@@ -53,8 +48,8 @@ public class TPhysiquesDAO {
 		// do nothing
 	}
 
-	public void save(TPhysiques transientInstance) {
-		log.debug("saving TPhysiques instance");
+	public void save(TJianchitypes transientInstance) {
+		log.debug("saving TJianchitypes instance");
 		try {
 			getCurrentSession().save(transientInstance);
 			log.debug("save successful");
@@ -64,8 +59,8 @@ public class TPhysiquesDAO {
 		}
 	}
 
-	public void delete(TPhysiques persistentInstance) {
-		log.debug("deleting TPhysiques instance");
+	public void delete(TJianchitypes persistentInstance) {
+		log.debug("deleting TJianchitypes instance");
 		try {
 			getCurrentSession().delete(persistentInstance);
 			log.debug("delete successful");
@@ -75,11 +70,11 @@ public class TPhysiquesDAO {
 		}
 	}
 
-	public TPhysiques findById(java.lang.String id) {
-		log.debug("getting TPhysiques instance with id: " + id);
+	public TJianchitypes findById(java.lang.String id) {
+		log.debug("getting TJianchitypes instance with id: " + id);
 		try {
-			TPhysiques instance = (TPhysiques) getCurrentSession().get(
-					"com.jhms.dao.TPhysiques", id);
+			TJianchitypes instance = (TJianchitypes) getCurrentSession().get(
+					"com.jhms.dao.TJianchitypes", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -87,11 +82,11 @@ public class TPhysiquesDAO {
 		}
 	}
 
-	public List findByExample(TPhysiques instance) {
-		log.debug("finding TPhysiques instance by example");
+	public List findByExample(TJianchitypes instance) {
+		log.debug("finding TJianchitypes instance by example");
 		try {
 			List results = getCurrentSession()
-					.createCriteria("com.jhms.dao.TPhysiques")
+					.createCriteria("com.jhms.dao.TJianchitypes")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
@@ -103,10 +98,10 @@ public class TPhysiquesDAO {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding TPhysiques instance with property: " + propertyName
-				+ ", value: " + value);
+		log.debug("finding TJianchitypes instance with property: "
+				+ propertyName + ", value: " + value);
 		try {
-			String queryString = "from TPhysiques as model where model."
+			String queryString = "from TJianchitypes as model where model."
 					+ propertyName + "= ?";
 			Query queryObject = getCurrentSession().createQuery(queryString);
 			queryObject.setParameter(0, value);
@@ -121,34 +116,14 @@ public class TPhysiquesDAO {
 		return findByProperty(FNAME, fname);
 	}
 
-	public List findByFguanlian(Object fguanlian) {
-		return findByProperty(FGUANLIAN, fguanlian);
-	}
-
-	public List findByFintroduce(Object fintroduce) {
-		return findByProperty(FINTRODUCE, fintroduce);
-	}
-
-	public List findByFreason(Object freason) {
-		return findByProperty(FREASON, freason);
-	}
-
-	public List findByFlead(Object flead) {
-		return findByProperty(FLEAD, flead);
-	}
-
-	public List findByFcharactor(Object fcharactor) {
-		return findByProperty(FCHARACTOR, fcharactor);
-	}
-
-	public List findByFimage(Object fimage) {
-		return findByProperty(FIMAGE, fimage);
+	public List findByFbelongType(Object fbelongType) {
+		return findByProperty(FBELONG_TYPE, fbelongType);
 	}
 
 	public List findAll() {
-		log.debug("finding all TPhysiques instances");
+		log.debug("finding all TJianchitypes instances");
 		try {
-			String queryString = "from TPhysiques";
+			String queryString = "from TJianchitypes";
 			Query queryObject = getCurrentSession().createQuery(queryString);
 			return queryObject.list();
 		} catch (RuntimeException re) {
@@ -157,10 +132,10 @@ public class TPhysiquesDAO {
 		}
 	}
 
-	public TPhysiques merge(TPhysiques detachedInstance) {
-		log.debug("merging TPhysiques instance");
+	public TJianchitypes merge(TJianchitypes detachedInstance) {
+		log.debug("merging TJianchitypes instance");
 		try {
-			TPhysiques result = (TPhysiques) getCurrentSession().merge(
+			TJianchitypes result = (TJianchitypes) getCurrentSession().merge(
 					detachedInstance);
 			log.debug("merge successful");
 			return result;
@@ -170,8 +145,8 @@ public class TPhysiquesDAO {
 		}
 	}
 
-	public void attachDirty(TPhysiques instance) {
-		log.debug("attaching dirty TPhysiques instance");
+	public void attachDirty(TJianchitypes instance) {
+		log.debug("attaching dirty TJianchitypes instance");
 		try {
 			getCurrentSession().saveOrUpdate(instance);
 			log.debug("attach successful");
@@ -181,8 +156,8 @@ public class TPhysiquesDAO {
 		}
 	}
 
-	public void attachClean(TPhysiques instance) {
-		log.debug("attaching clean TPhysiques instance");
+	public void attachClean(TJianchitypes instance) {
+		log.debug("attaching clean TJianchitypes instance");
 		try {
 			getCurrentSession().buildLockRequest(LockOptions.NONE).lock(
 					instance);
@@ -193,7 +168,8 @@ public class TPhysiquesDAO {
 		}
 	}
 
-	public static TPhysiquesDAO getFromApplicationContext(ApplicationContext ctx) {
-		return (TPhysiquesDAO) ctx.getBean("TPhysiquesDAO");
+	public static JianchitypeDao getFromApplicationContext(
+			ApplicationContext ctx) {
+		return (JianchitypeDao) ctx.getBean("TJianchitypesDAO");
 	}
 }
