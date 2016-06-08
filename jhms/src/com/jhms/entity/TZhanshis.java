@@ -9,6 +9,7 @@ public class TZhanshis implements java.io.Serializable {
 	// Fields
 
 	private String fid;
+	private String fimage;
 	private String furl;
 
 	// Constructors
@@ -18,7 +19,8 @@ public class TZhanshis implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public TZhanshis(String furl) {
+	public TZhanshis(String fimage, String furl) {
+		this.fimage = fimage;
 		this.furl = furl;
 	}
 
@@ -30,6 +32,14 @@ public class TZhanshis implements java.io.Serializable {
 
 	public void setFid(String fid) {
 		this.fid = fid;
+	}
+
+	public String getFimage() {
+		return this.fimage;
+	}
+
+	public void setFimage(String fimage) {
+		this.fimage = fimage;
 	}
 
 	public String getFurl() {

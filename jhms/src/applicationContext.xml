@@ -44,7 +44,24 @@
 				<value>com/jhms/entity/TJianchitypes.hbm.xml</value>
 				<value>com/jhms/entity/THuanjiepilaos.hbm.xml</value>
 				<value>com/jhms/entity/TDenglus.hbm.xml</value>
-				<value>com/jhms/entity/TUsers.hbm.xml</value></list>
+				<value>com/jhms/entity/TUsers.hbm.xml</value>
+				<value>com/jhms/dao/TZhanshis.hbm.xml</value>
+				<value>com/jhms/dao/TAdvice.hbm.xml</value>
+				<value>com/jhms/dao/TChanpins.hbm.xml</value>
+				<value>com/jhms/dao/TShiyongs.hbm.xml</value>
+				<value>com/jhms/dao/TAdmin.hbm.xml</value>
+				<value>com/jhms/dao/TDenglus.hbm.xml</value>
+				<value>com/jhms/dao/TQuestions.hbm.xml</value>
+				<value>com/jhms/dao/TJianchis.hbm.xml</value>
+				<value>com/jhms/dao/TPhysiques.hbm.xml</value>
+				<value>com/jhms/dao/Dianji.hbm.xml</value>
+				<value>com/jhms/dao/TPingluns.hbm.xml</value>
+				<value>com/jhms/dao/TUsers.hbm.xml</value>
+				<value>com/jhms/dao/THuanjiepilaos.hbm.xml</value>
+				<value>com/jhms/dao/TSolutions.hbm.xml</value>
+				<value>com/jhms/dao/TChecks.hbm.xml</value>
+				<value>com/jhms/dao/TJianchitypes.hbm.xml</value>
+				<value>com/jhms/dao/TDemands.hbm.xml</value></list>
 		</property></bean>
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
@@ -53,7 +70,7 @@
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
 	<!-- dao层 -->
-	<bean id="zhanshiDao" class="com.jhms.dao.TZhanshisDAO">
+	<bean id="zhanshiDao" class="com.jhms.dao.zhanshi.ZhanshiDao">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
@@ -108,7 +125,7 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="userDao" class="com.jhms.dao.TUsersDAO">
+	<bean id="userDao" class="com.jhms.dao.user.UserDao">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
@@ -119,7 +136,7 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="solutionDao" class="com.jhms.dao.TSolutionsDAO">
+	<bean id="solutionDao" class="com.jhms.dao.solution.SolutionDao">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
@@ -129,11 +146,7 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="jianchilistDao" class="com.jhms.dao.TJianchilistDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
-	</bean>
+
 	<bean id="jianchitypeDao" class="com.jhms.dao.jianchitype.JianchitypeDao">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
@@ -144,8 +157,4 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="dianjisDAO" class="com.jhms.dao.TDianjisDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
-	</bean></beans>
+</beans>

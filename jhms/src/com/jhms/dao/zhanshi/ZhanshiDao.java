@@ -1,8 +1,6 @@
-package com.jhms.dao;
+package com.jhms.dao.zhanshi;
 
-import java.sql.Timestamp;
 import java.util.List;
-import java.util.Set;
 
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
@@ -14,34 +12,25 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jhms.entity.TUsers;
+import com.jhms.entity.TZhanshis;
 
 /**
  * A data access object (DAO) providing persistence and search support for
- * TUsers entities. Transaction control of the save(), update() and delete()
+ * TZhanshis entities. Transaction control of the save(), update() and delete()
  * operations can directly support Spring container-managed transactions or they
  * can be augmented to handle user-managed Spring transactions. Each of these
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see com.jhms.dao.TUsers
+ * @see com.jhms.entity.TZhanshis
  * @author MyEclipse Persistence Tools
  */
 @Transactional
-public class TUsersDAO {
-	private static final Logger log = LoggerFactory.getLogger(TUsersDAO.class);
+public class ZhanshiDao {
+	private static final Logger log = LoggerFactory
+			.getLogger(ZhanshiDao.class);
 	// property constants
-	public static final String FID = "fid";
-	public static final String FNAME = "fname";
-	public static final String FPWD = "fpwd";
-	public static final String FTYPE = "ftype";
-	public static final String FAGE = "fage";
-	public static final String FSEX = "fsex";
-	public static final String FHEIGHT = "fheight";
-	public static final String FCOUNTRY = "fcountry";
-	public static final String FPROVINCE = "fprovince";
-	public static final String FCITY = "fcity";
-	public static final String FHEAD = "fhead";
+	public static final String FURL = "furl";
 
 	private SessionFactory sessionFactory;
 
@@ -57,8 +46,8 @@ public class TUsersDAO {
 		// do nothing
 	}
 
-	public void save(TUsers transientInstance) {
-		log.debug("saving TUsers instance");
+	public void save(TZhanshis transientInstance) {
+		log.debug("saving TZhanshis instance");
 		try {
 			getCurrentSession().save(transientInstance);
 			log.debug("save successful");
@@ -68,8 +57,8 @@ public class TUsersDAO {
 		}
 	}
 
-	public void delete(TUsers persistentInstance) {
-		log.debug("deleting TUsers instance");
+	public void delete(TZhanshis persistentInstance) {
+		log.debug("deleting TZhanshis instance");
 		try {
 			getCurrentSession().delete(persistentInstance);
 			log.debug("delete successful");
@@ -79,11 +68,11 @@ public class TUsersDAO {
 		}
 	}
 
-	public TUsers findById(java.lang.String id) {
-		log.debug("getting TUsers instance with id: " + id);
+	public TZhanshis findById(java.lang.String id) {
+		log.debug("getting TZhanshis instance with id: " + id);
 		try {
-			TUsers instance = (TUsers) getCurrentSession().get(
-					"com.jhms.dao.TUsers", id);
+			TZhanshis instance = (TZhanshis) getCurrentSession().get(
+					"com.jhms.dao.TZhanshis", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -91,11 +80,11 @@ public class TUsersDAO {
 		}
 	}
 
-	public List findByExample(TUsers instance) {
-		log.debug("finding TUsers instance by example");
+	public List findByExample(TZhanshis instance) {
+		log.debug("finding TZhanshis instance by example");
 		try {
 			List results = getCurrentSession()
-					.createCriteria("com.jhms.dao.TUsers")
+					.createCriteria("com.jhms.dao.TZhanshis")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
@@ -107,10 +96,10 @@ public class TUsersDAO {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding TUsers instance with property: " + propertyName
+		log.debug("finding TZhanshis instance with property: " + propertyName
 				+ ", value: " + value);
 		try {
-			String queryString = "from TUsers as model where model."
+			String queryString = "from TZhanshis as model where model."
 					+ propertyName + "= ?";
 			Query queryObject = getCurrentSession().createQuery(queryString);
 			queryObject.setParameter(0, value);
@@ -121,54 +110,14 @@ public class TUsersDAO {
 		}
 	}
 
-	public List findByFid(Object fid) {
-		return findByProperty(FID, fid);
-	}
-
-	public List findByFname(Object fname) {
-		return findByProperty(FNAME, fname);
-	}
-
-	public List findByFpwd(Object fpwd) {
-		return findByProperty(FPWD, fpwd);
-	}
-
-	public List findByFtype(Object ftype) {
-		return findByProperty(FTYPE, ftype);
-	}
-
-	public List findByFage(Object fage) {
-		return findByProperty(FAGE, fage);
-	}
-
-	public List findByFsex(Object fsex) {
-		return findByProperty(FSEX, fsex);
-	}
-
-	public List findByFheight(Object fheight) {
-		return findByProperty(FHEIGHT, fheight);
-	}
-
-	public List findByFcountry(Object fcountry) {
-		return findByProperty(FCOUNTRY, fcountry);
-	}
-
-	public List findByFprovince(Object fprovince) {
-		return findByProperty(FPROVINCE, fprovince);
-	}
-
-	public List findByFcity(Object fcity) {
-		return findByProperty(FCITY, fcity);
-	}
-
-	public List findByFhead(Object fhead) {
-		return findByProperty(FHEAD, fhead);
+	public List findByFurl(Object furl) {
+		return findByProperty(FURL, furl);
 	}
 
 	public List findAll() {
-		log.debug("finding all TUsers instances");
+		log.debug("finding all TZhanshis instances");
 		try {
-			String queryString = "from TUsers";
+			String queryString = "from TZhanshis";
 			Query queryObject = getCurrentSession().createQuery(queryString);
 			return queryObject.list();
 		} catch (RuntimeException re) {
@@ -177,11 +126,11 @@ public class TUsersDAO {
 		}
 	}
 
-	public TUsers merge(TUsers detachedInstance) {
-		log.debug("merging TUsers instance");
+	public TZhanshis merge(TZhanshis detachedInstance) {
+		log.debug("merging TZhanshis instance");
 		try {
-			TUsers result = (TUsers) getCurrentSession()
-					.merge(detachedInstance);
+			TZhanshis result = (TZhanshis) getCurrentSession().merge(
+					detachedInstance);
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
@@ -190,8 +139,8 @@ public class TUsersDAO {
 		}
 	}
 
-	public void attachDirty(TUsers instance) {
-		log.debug("attaching dirty TUsers instance");
+	public void attachDirty(TZhanshis instance) {
+		log.debug("attaching dirty TZhanshis instance");
 		try {
 			getCurrentSession().saveOrUpdate(instance);
 			log.debug("attach successful");
@@ -201,8 +150,8 @@ public class TUsersDAO {
 		}
 	}
 
-	public void attachClean(TUsers instance) {
-		log.debug("attaching clean TUsers instance");
+	public void attachClean(TZhanshis instance) {
+		log.debug("attaching clean TZhanshis instance");
 		try {
 			getCurrentSession().buildLockRequest(LockOptions.NONE).lock(
 					instance);
@@ -213,7 +162,7 @@ public class TUsersDAO {
 		}
 	}
 
-	public static TUsersDAO getFromApplicationContext(ApplicationContext ctx) {
-		return (TUsersDAO) ctx.getBean("TUsersDAO");
+	public static ZhanshiDao getFromApplicationContext(ApplicationContext ctx) {
+		return (ZhanshiDao) ctx.getBean("TZhanshisDAO");
 	}
 }

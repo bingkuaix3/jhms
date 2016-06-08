@@ -22,7 +22,7 @@ import com.jhms.entity.THuanjiepilaos;
  * transactions. Each of these methods provides additional information for how
  * to configure it for the desired type of transaction control.
  * 
- * @see com.jhms.dao.THuanjiepilaos
+ * @see com.jhms.entity.THuanjiepilaos
  * @author MyEclipse Persistence Tools
  */
 @Transactional

@@ -23,7 +23,7 @@ import com.jhms.entity.Dianji;
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see com.jhms.dao.Dianji
+ * @see com.jhms.entity.Dianji
  * @author MyEclipse Persistence Tools
  */
 @Transactional

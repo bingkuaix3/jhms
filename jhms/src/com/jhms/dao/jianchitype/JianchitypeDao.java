@@ -23,7 +23,7 @@ import com.jhms.entity.TJianchitypes;
  * transactions. Each of these methods provides additional information for how
  * to configure it for the desired type of transaction control.
  * 
- * @see com.jhms.dao.TJianchitypes
+ * @see com.jhms.entity.TJianchitypes
  * @author MyEclipse Persistence Tools
  */
 @Transactional

@@ -23,7 +23,7 @@ import com.jhms.entity.TAdvice;
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see com.jhms.dao.TAdvice
+ * @see com.jhms.entity.TAdvice
  * @author MyEclipse Persistence Tools
  */
 @Transactional

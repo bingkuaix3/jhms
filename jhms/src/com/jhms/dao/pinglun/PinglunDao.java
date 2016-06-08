@@ -23,7 +23,7 @@ import com.jhms.entity.TPingluns;
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see com.jhms.dao.TPingluns
+ * @see com.jhms.entity.TPingluns
  * @author MyEclipse Persistence Tools
  */
 @Transactional

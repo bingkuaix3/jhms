@@ -22,7 +22,7 @@ import com.jhms.entity.TShiyongs;
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see com.jhms.dao.TShiyongs
+ * @see com.jhms.entity.TShiyongs
  * @author MyEclipse Persistence Tools
  */
 @Transactional

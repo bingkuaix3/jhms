@@ -22,7 +22,7 @@ import com.jhms.entity.TChanpins;
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see com.jhms.dao.TChanpins
+ * @see com.jhms.entity.TChanpins
  * @author MyEclipse Persistence Tools
  */
 @Transactional

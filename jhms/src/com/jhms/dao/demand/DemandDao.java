@@ -23,7 +23,7 @@ import com.jhms.entity.TDemands;
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see com.jhms.dao.TDemands
+ * @see com.jhms.entity.TDemands
  * @author MyEclipse Persistence Tools
  */
 @Transactional

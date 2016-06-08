@@ -23,7 +23,7 @@ import com.jhms.entity.TChecks;
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see com.jhms.dao.TChecks
+ * @see com.jhms.entity.TChecks
  * @author MyEclipse Persistence Tools
  */
 @Transactional

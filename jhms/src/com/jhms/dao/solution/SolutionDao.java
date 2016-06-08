@@ -1,4 +1,4 @@
-package com.jhms.dao;
+package com.jhms.dao.solution;
 
 import java.util.List;
 
@@ -22,13 +22,13 @@ import com.jhms.entity.TSolutions;
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see com.jhms.dao.TSolutions
+ * @see com.jhms.entity.TSolutions
  * @author MyEclipse Persistence Tools
  */
 @Transactional
-public class TSolutionsDAO {
+public class SolutionDao implements ISolutionDao {
 	private static final Logger log = LoggerFactory
-			.getLogger(TSolutionsDAO.class);
+			.getLogger(SolutionDao.class);
 	// property constants
 	public static final String FBELONG_PHYSIQUE = "fbelongPhysique";
 	public static final String FSCORE_UP = "fscoreUp";
@@ -197,7 +197,7 @@ public class TSolutionsDAO {
 		}
 	}
 
-	public static TSolutionsDAO getFromApplicationContext(ApplicationContext ctx) {
-		return (TSolutionsDAO) ctx.getBean("TSolutionsDAO");
+	public static SolutionDao getFromApplicationContext(ApplicationContext ctx) {
+		return (SolutionDao) ctx.getBean("solutionDao");
 	}
 }

@@ -22,7 +22,7 @@ import com.jhms.entity.TQuestions;
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see com.jhms.dao.TQuestions
+ * @see com.jhms.entity.TQuestions
  * @author MyEclipse Persistence Tools
  */
 @Transactional

@@ -23,7 +23,7 @@ import com.jhms.entity.TPhysiques;
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see com.jhms.dao.TPhysiques
+ * @see com.jhms.entity.TPhysiques
  * @author MyEclipse Persistence Tools
  */
 @Transactional
