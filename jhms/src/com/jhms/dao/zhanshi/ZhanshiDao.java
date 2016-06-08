@@ -26,7 +26,7 @@ import com.jhms.entity.TZhanshis;
  * @author MyEclipse Persistence Tools
  */
 @Transactional
-public class ZhanshiDao {
+public class ZhanshiDao implements IZhanshiDao {
 	private static final Logger log = LoggerFactory
 			.getLogger(ZhanshiDao.class);
 	// property constants

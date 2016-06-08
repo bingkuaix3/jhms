@@ -34,34 +34,16 @@
 				<value>com/jhms/entity/TZhanshis.hbm.xml</value>
 				<value>com/jhms/entity/Dianji.hbm.xml</value>
 				<value>com/jhms/entity/TAdmin.hbm.xml</value>
-				<value>com/jhms/entity/TDianjis.hbm.xml</value>
 				<value>com/jhms/entity/TChecks.hbm.xml</value>
 				<value>com/jhms/entity/TDemands.hbm.xml</value>
 				<value>com/jhms/entity/TJianchis.hbm.xml</value>
 				<value>com/jhms/entity/TShiyongs.hbm.xml</value>
 				<value>com/jhms/entity/TPingluns.hbm.xml</value>
-				<value>com/jhms/entity/TJianchilist.hbm.xml</value>
 				<value>com/jhms/entity/TJianchitypes.hbm.xml</value>
 				<value>com/jhms/entity/THuanjiepilaos.hbm.xml</value>
 				<value>com/jhms/entity/TDenglus.hbm.xml</value>
 				<value>com/jhms/entity/TUsers.hbm.xml</value>
-				<value>com/jhms/dao/TZhanshis.hbm.xml</value>
-				<value>com/jhms/dao/TAdvice.hbm.xml</value>
-				<value>com/jhms/dao/TChanpins.hbm.xml</value>
-				<value>com/jhms/dao/TShiyongs.hbm.xml</value>
-				<value>com/jhms/dao/TAdmin.hbm.xml</value>
-				<value>com/jhms/dao/TDenglus.hbm.xml</value>
-				<value>com/jhms/dao/TQuestions.hbm.xml</value>
-				<value>com/jhms/dao/TJianchis.hbm.xml</value>
-				<value>com/jhms/dao/TPhysiques.hbm.xml</value>
-				<value>com/jhms/dao/Dianji.hbm.xml</value>
-				<value>com/jhms/dao/TPingluns.hbm.xml</value>
-				<value>com/jhms/dao/TUsers.hbm.xml</value>
-				<value>com/jhms/dao/THuanjiepilaos.hbm.xml</value>
-				<value>com/jhms/dao/TSolutions.hbm.xml</value>
-				<value>com/jhms/dao/TChecks.hbm.xml</value>
-				<value>com/jhms/dao/TJianchitypes.hbm.xml</value>
-				<value>com/jhms/dao/TDemands.hbm.xml</value></list>
+			</list>
 		</property></bean>
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
