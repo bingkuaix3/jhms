@@ -139,4 +139,16 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+	<!-- service层 -->
+	<bean id="adminService" class="com.jhms.service.admin.AdminService">
+		<property name="adminDao">
+			<ref bean="adminDao" />
+		</property>
+	</bean>
+	<!-- action层 -->
+	<bean id="adminAction" class="com.jhms.action.admin.AdminAction">
+		<property name="adminService">
+			<ref bean="adminService" />
+		</property>
+	</bean>
 </beans>

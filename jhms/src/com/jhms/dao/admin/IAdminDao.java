@@ -14,6 +14,8 @@ public interface IAdminDao {
 	
 	public List findByProperty(String propertyName, Object value);
 	
+	public TAdmin findByNameAndPwd(String name, String pwd);
+	
 	public List findAll();
 	
 	public TAdmin merge(TAdmin detachedInstance);
