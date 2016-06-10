@@ -1,9 +1,8 @@
 package com.jhms.service.admin;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import net.sf.json.JSONObject;
 
 import com.jhms.dao.admin.IAdminDao;
 import com.jhms.entity.TAdmin;
@@ -41,7 +40,7 @@ public class AdminService implements IAdminService{
 			log.debug("执行管理员登陆service成功");
 		}catch(Exception e){
 			jsonResult.put("state", "fail");
-			log.error("执行管理员登陆service报错："+e.toString());
+			log.error("执行管理员登陆service报错：",e);
 		}
 		return jsonResult;
 	}

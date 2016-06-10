@@ -14,4 +14,6 @@
 	
 	<!-- 管理员 -->
 	<include file="com/jhms/action/admin/AdminAction.xml"></include>
+	<!-- 用户 -->
+	<include file="com/jhms/action/user/UserAction.xml"></include>
 </struts>    

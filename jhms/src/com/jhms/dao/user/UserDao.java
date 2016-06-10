@@ -15,6 +15,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jhms.entity.TUsers;
+import com.jhms.po.graph.UserRegisterAmount;
+import com.jhms.po.graph.UserSexRatio;
+import com.jhms.po.graph.UserSourceRatio;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -28,7 +31,7 @@ import com.jhms.entity.TUsers;
  * @author MyEclipse Persistence Tools
  */
 @Transactional
-public class UserDao implements IUserDao{
+public class UserDao implements IUserDao {
 	private static final Logger log = LoggerFactory.getLogger(UserDao.class);
 	// property constants
 	public static final String FID = "fid";
@@ -121,6 +124,72 @@ public class UserDao implements IUserDao{
 		}
 	}
 
+	public List<UserRegisterAmount> findRegisterByDate(String startDate, String endDate) {
+		log.debug("查询用户注册量数据，时间范围：" + startDate + "至" + endDate);
+		try {
+			String queryString = "select CONCAT(year(a.fCreateTime),'-',month(a.fCreateTime),'-',day(a.fCreateTime)) as registerDate, count(*) as registerDate "
+					+ "from t_users a  where a.fCreateTime => ? and a.fCreateTime <= ?"
+					+ "group by year(a.fCreateTime),  month(a.fCreateTime), day(a.fCreateTime) "
+					+ "order by year(a.fCreateTime),  month(a.fCreateTime), day(a.fCreateTime) asc";
+			Query queryObject = getCurrentSession().createSQLQuery(queryString);
+			queryObject.setParameter(0, startDate);
+			queryObject.setParameter(1, endDate);
+			return queryObject.list();
+		} catch (RuntimeException re) {
+			log.error("查询用户注册量数据失败", re);
+			throw re;
+		}
+	}
+
+	public List<UserSexRatio> findSexByDate(String startDate, String endDate) {
+		log.debug("查询用户性别比例数据，时间范围：" + startDate + "至" + endDate);
+		try {
+			String queryString = "select a.fSex as sexType, count(*) as sexAmount "
+					+ "from t_users a  where a.fCreateTime => ? and a.fCreateTime <= ?"
+					+ "group by a.fSex "
+					+ "order by a.fSex asc";
+			Query queryObject = getCurrentSession().createSQLQuery(queryString);
+			queryObject.setParameter(0, startDate);
+			queryObject.setParameter(1, endDate);
+			return queryObject.list();
+		} catch (RuntimeException re) {
+			log.error("查询用户性别比例数据失败", re);
+			throw re;
+		}
+	}
+	
+	public List<UserSourceRatio> findSourceByDate(String startDate, String endDate) {
+		log.debug("查询用户来源比例数据，时间范围：" + startDate + "至" + endDate);
+		try {
+			String queryString = "select a.fType as sourceType, count(*) as sourceAmount "
+					+ "from t_users a  where a.fCreateTime => ? and a.fCreateTime <= ?"
+					+ "group by a.fSource "
+					+ "order by a.fSource asc";
+			Query queryObject = getCurrentSession().createSQLQuery(queryString);
+			queryObject.setParameter(0, startDate);
+			queryObject.setParameter(1, endDate);
+			return queryObject.list();
+		} catch (RuntimeException re) {
+			log.error("查询用户来源比例数据失败", re);
+			throw re;
+		}
+	}
+	
+	public int findCountByDate(String startDate, String endDate){
+		log.debug("查询用户数量，时间范围：" + startDate + "至" + endDate);
+		try {
+			String queryString = "select count(*) as sourceAmount "
+					+ "from t_users a  where a.fCreateTime => ? and a.fCreateTime <= ?";
+			Query queryObject = getCurrentSession().createSQLQuery(queryString);
+			queryObject.setParameter(0, startDate);
+			queryObject.setParameter(1, endDate);
+			return (int)queryObject.uniqueResult();
+		} catch (RuntimeException re) {
+			log.error("查询用户数量失败", re);
+			throw re;
+		}
+	}
+	
 	public List findByFid(Object fid) {
 		return findByProperty(FID, fid);
 	}

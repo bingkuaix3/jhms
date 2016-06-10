@@ -1,6 +1,6 @@
 package com.jhms.action.admin;
 
-import net.sf.json.JSONObject;
+import org.json.JSONObject;
 
 import com.jhms.entity.TAdmin;
 import com.jhms.service.admin.IAdminService;

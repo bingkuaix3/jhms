@@ -1,6 +1,6 @@
 package com.jhms.service.admin;
 
-import net.sf.json.JSONObject;
+import org.json.JSONObject;
 
 /**
  * @Description 管理员service接口
