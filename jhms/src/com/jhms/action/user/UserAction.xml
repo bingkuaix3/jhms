@@ -8,6 +8,7 @@
 			<result name="userRegisterAmount" type="json"></result>
 			<result name="userSexRatio" type="json"></result>
 			<result name="userSourceRatio" type="json"></result>
+			<result name="userAgeAmount" type="json"></result>
 		</action>
 	</package>
 </struts>

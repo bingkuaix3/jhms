@@ -41,6 +41,13 @@ public class UserAction extends ActionSupport {
     	return "userSourceRatio";
     }
     
+    //查询用户年龄分布
+    public String queryUserAgeAmount(){
+    	JSONObject jsonResult = userService.queryUserAgeAmountService(startDate, endDate);
+    	result = jsonResult.toString();
+    	return "userAgeAmount";
+    }
+    
 	public IUserService getUserService() {
 		return userService;
 	}

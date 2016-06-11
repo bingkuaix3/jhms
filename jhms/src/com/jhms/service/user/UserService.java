@@ -1,5 +1,6 @@
 package com.jhms.service.user;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONObject;
@@ -7,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.jhms.dao.user.IUserDao;
+import com.jhms.po.graph.DengluDayAmount;
+import com.jhms.po.graph.UserAgeAmount;
 import com.jhms.po.graph.UserRegisterAmount;
 import com.jhms.po.graph.UserSexRatio;
 import com.jhms.po.graph.UserSourceRatio;
@@ -161,6 +164,62 @@ public class UserService implements IUserService{
 		}
 		return jsonResult;
 	}
+	
+	
+	/**
+	 * @Description 查询用户年龄数量数据service
+	 * @author  liuyang
+	 * @param String startDate
+	 * @param String endDate
+	 * @return json
+	 */
+	public JSONObject queryUserAgeAmountService(String startDate,String endDate){
+		log.debug("开始查询用户年龄数量数据service");
+		JSONObject jsonResult = new JSONObject();
+		try{
+			List<UserAgeAmount> list = userDao.findAgeByDate(startDate, endDate);
+			if(list != null){
+				jsonResult.put("state", "success");
+				JSONObject jsonList = new JSONObject();
+				int sum = 0;
+				JSONObject jsonL = null;
+				
+				for(UserAgeAmount l:list){
+					if(l.getAge() == 0){
+						 sum += l.getAmount();
+					}
+				}
+				jsonL = new JSONObject();	
+				jsonL.put("age","未知");
+				jsonL.put("amount", sum);
+				jsonList.put("data", jsonL);
+				
+				for(int i=0;i<80;i=i+5){
+					sum = 0;
+					for(UserAgeAmount l:list){
+						if(l.getAge() > i && l.getAge() <= (i+5)){
+							 sum += l.getAmount();
+						}
+					}
+					jsonL = new JSONObject();	
+					jsonL.put("age", i+"-"+(i+5));
+					jsonL.put("amount", sum);
+					jsonList.put("data", jsonL);
+				}
+				 
+				jsonResult.put("list", jsonList);
+			}
+			else{
+				jsonResult.put("state", "fail");
+			}
+			log.debug("查询用户年龄数量数据service成功");
+		}catch(Exception e){
+			jsonResult.put("state", "fail");
+			log.error("查询用户年龄数量数据service报错：",e);
+		}
+		return jsonResult;
+	}
+	
 	public IUserDao getUserDao() {
 		return userDao;
 	}

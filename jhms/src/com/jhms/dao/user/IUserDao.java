@@ -3,6 +3,7 @@ package com.jhms.dao.user;
 import java.util.List;
 
 import com.jhms.entity.TUsers;
+import com.jhms.po.graph.UserAgeAmount;
 import com.jhms.po.graph.UserRegisterAmount;
 import com.jhms.po.graph.UserSexRatio;
 import com.jhms.po.graph.UserSourceRatio;
@@ -28,5 +29,7 @@ public interface IUserDao {
 	public List<UserSourceRatio> findSourceByDate(String startDate, String endDate);
 	
 	public int findCountByDate(String startDate, String endDate);
+	
+	public List<UserAgeAmount> findAgeByDate(String startDate, String endDate);
 
 }

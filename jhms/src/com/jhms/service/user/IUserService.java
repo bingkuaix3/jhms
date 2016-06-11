@@ -14,5 +14,7 @@ public interface IUserService {
 	public JSONObject queryUserSexRatioService(String startDate,String endDate);
 	
 	public JSONObject queryUserSourceRatioService(String startDate,String endDate);
+	
+	public JSONObject queryUserAgeAmountService(String startDate,String endDate);
 
 }

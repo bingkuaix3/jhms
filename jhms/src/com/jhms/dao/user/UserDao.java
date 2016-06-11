@@ -15,6 +15,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jhms.entity.TUsers;
+import com.jhms.po.graph.UserAgeAmount;
 import com.jhms.po.graph.UserRegisterAmount;
 import com.jhms.po.graph.UserSexRatio;
 import com.jhms.po.graph.UserSourceRatio;
@@ -186,6 +187,23 @@ public class UserDao implements IUserDao {
 			return (int)queryObject.uniqueResult();
 		} catch (RuntimeException re) {
 			log.error("查询用户数量失败", re);
+			throw re;
+		}
+	}
+	
+	public List<UserAgeAmount> findAgeByDate(String startDate, String endDate) {
+		log.debug("查询用户年龄数量数据，时间范围：" + startDate + "至" + endDate);
+		try {
+			String queryString = "select a.fAge as age, count(*) as amount "
+					+ "from t_users a  where a.fCreateTime => ? and a.fCreateTime <= ?"
+					+ "group by a.fAge "
+					+ "order by a.fAge asc";
+			Query queryObject = getCurrentSession().createSQLQuery(queryString);
+			queryObject.setParameter(0, startDate);
+			queryObject.setParameter(1, endDate);
+			return queryObject.list();
+		} catch (RuntimeException re) {
+			log.error("查询用户年龄数量数据失败", re);
 			throw re;
 		}
 	}
