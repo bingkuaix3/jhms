@@ -150,6 +150,11 @@
 			<ref bean="userDao" />
 		</property>
 	</bean>
+	<bean id="dengluService" class="com.jhms.service.denglu.DengluService">
+		<property name="dengluDao">
+			<ref bean="dengluDao" />
+		</property>
+	</bean>
 	<!-- action层 -->
 	<bean id="adminAction" class="com.jhms.action.admin.AdminAction">
 		<property name="adminService">
@@ -159,6 +164,11 @@
 	<bean id="userAction" class="com.jhms.action.user.UserAction">
 		<property name="userService">
 			<ref bean="userService" />
+		</property>
+	</bean>
+	<bean id="dengluAction" class="com.jhms.action.denglu.DengluAction">
+		<property name="dengluService">
+			<ref bean="dengluService" />
 		</property>
 	</bean>
 </beans>

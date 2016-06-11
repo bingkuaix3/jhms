@@ -14,6 +14,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jhms.entity.TDenglus;
+import com.jhms.po.graph.DengluDayAmount;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -110,6 +111,23 @@ public class DengluDao implements IDengluDao{
 		}
 	}
 
+	public List<DengluDayAmount> findAmountByDate(String startDate,String endDate){
+		log.debug("查询用户登陆数据，时间范围：" + startDate + "至" + endDate);
+		try {
+			String queryString = "select hour(a.fTime) as hr,count(*) as amount"
+					+ "from t_denglus a  where a.fTime => ? and a.fTime <= ?"
+					+ "group by hour(a.fTime) "
+					+ "order by hour(a.fTime) asc";
+			Query queryObject = getCurrentSession().createSQLQuery(queryString);
+			queryObject.setParameter(0, startDate);
+			queryObject.setParameter(1, endDate);
+			return queryObject.list();
+		} catch (RuntimeException re) {
+			log.error("查询用户登陆数据失败", re);
+			throw re;
+		}
+	}
+	
 	public List findAll() {
 		log.debug("finding all TDenglus instances");
 		try {

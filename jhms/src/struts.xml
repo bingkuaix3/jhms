@@ -16,4 +16,6 @@
 	<include file="com/jhms/action/admin/AdminAction.xml"></include>
 	<!-- 用户 -->
 	<include file="com/jhms/action/user/UserAction.xml"></include>
+	<!-- 登陆 -->
+	<include file="com/jhms/action/denglu/DengluAction.xml"></include>
 </struts>    

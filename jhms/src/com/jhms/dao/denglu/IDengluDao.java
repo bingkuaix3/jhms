@@ -3,6 +3,7 @@ package com.jhms.dao.denglu;
 import java.util.List;
 
 import com.jhms.entity.TDenglus;
+import com.jhms.po.graph.DengluDayAmount;
 
 public interface IDengluDao {
 	
@@ -17,5 +18,7 @@ public interface IDengluDao {
 	public List findAll();
 	
 	public TDenglus merge(TDenglus detachedInstance);
+	
+	public List<DengluDayAmount> findAmountByDate(String startDate,String endDate);
 
 }
