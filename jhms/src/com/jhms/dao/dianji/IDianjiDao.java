@@ -3,6 +3,7 @@ package com.jhms.dao.dianji;
 import java.util.List;
 
 import com.jhms.entity.Dianji;
+import com.jhms.po.graph.DianjiAmount;
 
 public interface IDianjiDao {
 	
@@ -17,5 +18,7 @@ public interface IDianjiDao {
 	public List findAll();
 	
 	public Dianji merge(Dianji detachedInstance);
+	
+	public List<DianjiAmount> findAmountByDate(String typeNo,String startDate,String endDate);
 
 }

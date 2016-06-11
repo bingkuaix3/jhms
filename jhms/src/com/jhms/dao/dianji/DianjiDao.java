@@ -14,6 +14,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jhms.entity.Dianji;
+import com.jhms.po.graph.DianjiAmount;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -119,6 +120,24 @@ public class DianjiDao implements IDianjiDao {
 		return findByProperty(FTYPE_NAME, ftypeName);
 	}
 
+	public List<DianjiAmount> findAmountByDate(String typeNo,String startDate,String endDate){
+		log.debug("查询点击数量数据，时间范围：" + startDate + "至" + endDate);
+		try {
+			String queryString = "select a.fType as typeNo,a.fTypeName as typeName, count(*) as typeAmount "
+					+ "from dianji a  where a.fType = ? and a.fCreateTime => ? and a.fCreateTime <= ?"
+					+ "group by a.fType "
+					+ "order by a.fType asc";
+			Query queryObject = getCurrentSession().createSQLQuery(queryString);
+			queryObject.setParameter(0, typeNo);
+			queryObject.setParameter(1, startDate);
+			queryObject.setParameter(2, endDate);
+			return queryObject.list();
+		} catch (RuntimeException re) {
+			log.error("查询点击数量失败", re);
+			throw re;
+		}
+	}
+	
 	public List findAll() {
 		log.debug("finding all Dianji instances");
 		try {
