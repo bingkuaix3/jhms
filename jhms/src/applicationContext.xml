@@ -7,10 +7,10 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 		<property name="url"
-			value="jdbc:mysql://127.0.0.1:3306/jhdb?useUicode=true&amp;charactorEncoding=utf-8">
+			value="jdbc:mysql://121.40.141.2:3306/jhdb?useUicode=true&amp;charactorEncoding=utf-8">
 		</property>
 		<property name="username" value="root"></property>
-		<property name="password" value="x5"></property>
+		<property name="password" value="JianhaoDB@365"></property>
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -82,7 +82,7 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="questionDao" class="com.jhms.dao.question.TQuestionsDAO">
+	<bean id="questionDao" class="com.jhms.dao.question.QuestionDao">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
