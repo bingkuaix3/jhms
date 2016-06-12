@@ -2,13 +2,14 @@ package com.jhms.dao.zhanshi;
 
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,8 +28,7 @@ import com.jhms.entity.TZhanshis;
  */
 @Transactional
 public class ZhanshiDao implements IZhanshiDao {
-	private static final Logger log = LoggerFactory
-			.getLogger(ZhanshiDao.class);
+	private static final Log log = LogFactory.getLog(ZhanshiDao.class);
 	// property constants
 	public static final String FURL = "furl";
 
@@ -47,56 +47,56 @@ public class ZhanshiDao implements IZhanshiDao {
 	}
 
 	public void save(TZhanshis transientInstance) {
-		log.debug("saving TZhanshis instance");
+		log.info("saving TZhanshis instance");
 		try {
 			getCurrentSession().save(transientInstance);
-			log.debug("save successful");
+			log.info("save successful");
 		} catch (RuntimeException re) {
-			log.error("save failed", re);
+			log.info("save failed", re);
 			throw re;
 		}
 	}
 
 	public void delete(TZhanshis persistentInstance) {
-		log.debug("deleting TZhanshis instance");
+		log.info("deleting TZhanshis instance");
 		try {
 			getCurrentSession().delete(persistentInstance);
-			log.debug("delete successful");
+			log.info("delete successful");
 		} catch (RuntimeException re) {
-			log.error("delete failed", re);
+			log.info("delete failed", re);
 			throw re;
 		}
 	}
 
 	public TZhanshis findById(java.lang.String id) {
-		log.debug("getting TZhanshis instance with id: " + id);
+		log.info("getting TZhanshis instance with id: " + id);
 		try {
 			TZhanshis instance = (TZhanshis) getCurrentSession().get(
 					"com.jhms.dao.TZhanshis", id);
 			return instance;
 		} catch (RuntimeException re) {
-			log.error("get failed", re);
+			log.info("get failed", re);
 			throw re;
 		}
 	}
 
 	public List findByExample(TZhanshis instance) {
-		log.debug("finding TZhanshis instance by example");
+		log.info("finding TZhanshis instance by example");
 		try {
 			List results = getCurrentSession()
 					.createCriteria("com.jhms.dao.TZhanshis")
 					.add(Example.create(instance)).list();
-			log.debug("find by example successful, result size: "
+			log.info("find by example successful, result size: "
 					+ results.size());
 			return results;
 		} catch (RuntimeException re) {
-			log.error("find by example failed", re);
+			log.info("find by example failed", re);
 			throw re;
 		}
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding TZhanshis instance with property: " + propertyName
+		log.info("finding TZhanshis instance with property: " + propertyName
 				+ ", value: " + value);
 		try {
 			String queryString = "from TZhanshis as model where model."
@@ -105,7 +105,7 @@ public class ZhanshiDao implements IZhanshiDao {
 			queryObject.setParameter(0, value);
 			return queryObject.list();
 		} catch (RuntimeException re) {
-			log.error("find by property name failed", re);
+			log.info("find by property name failed", re);
 			throw re;
 		}
 	}
@@ -115,49 +115,49 @@ public class ZhanshiDao implements IZhanshiDao {
 	}
 
 	public List findAll() {
-		log.debug("finding all TZhanshis instances");
+		log.info("finding all TZhanshis instances");
 		try {
 			String queryString = "from TZhanshis";
 			Query queryObject = getCurrentSession().createQuery(queryString);
 			return queryObject.list();
 		} catch (RuntimeException re) {
-			log.error("find all failed", re);
+			log.info("find all failed", re);
 			throw re;
 		}
 	}
 
 	public TZhanshis merge(TZhanshis detachedInstance) {
-		log.debug("merging TZhanshis instance");
+		log.info("merging TZhanshis instance");
 		try {
 			TZhanshis result = (TZhanshis) getCurrentSession().merge(
 					detachedInstance);
-			log.debug("merge successful");
+			log.info("merge successful");
 			return result;
 		} catch (RuntimeException re) {
-			log.error("merge failed", re);
+			log.info("merge failed", re);
 			throw re;
 		}
 	}
 
 	public void attachDirty(TZhanshis instance) {
-		log.debug("attaching dirty TZhanshis instance");
+		log.info("attaching dirty TZhanshis instance");
 		try {
 			getCurrentSession().saveOrUpdate(instance);
-			log.debug("attach successful");
+			log.info("attach successful");
 		} catch (RuntimeException re) {
-			log.error("attach failed", re);
+			log.info("attach failed", re);
 			throw re;
 		}
 	}
 
 	public void attachClean(TZhanshis instance) {
-		log.debug("attaching clean TZhanshis instance");
+		log.info("attaching clean TZhanshis instance");
 		try {
 			getCurrentSession().buildLockRequest(LockOptions.NONE).lock(
 					instance);
-			log.debug("attach successful");
+			log.info("attach successful");
 		} catch (RuntimeException re) {
-			log.error("attach failed", re);
+			log.info("attach failed", re);
 			throw re;
 		}
 	}

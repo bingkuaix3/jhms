@@ -1,8 +1,8 @@
 package com.jhms.service.admin;
 
 import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.jhms.dao.admin.IAdminDao;
 import com.jhms.entity.TAdmin;
@@ -14,7 +14,7 @@ import com.jhms.entity.TAdmin;
  */
 public class AdminService implements IAdminService{
 	
-	private static final Logger log = LoggerFactory.getLogger(AdminService.class);
+	private static final Log log = LogFactory.getLog(AdminService.class);
 	
 	private IAdminDao adminDao;
 	

@@ -2,13 +2,14 @@ package com.jhms.dao.shiyong;
 
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,8 +28,7 @@ import com.jhms.entity.TShiyongs;
  */
 @Transactional
 public class ShiyongDao implements IShiyongDao{
-	private static final Logger log = LoggerFactory
-			.getLogger(ShiyongDao.class);
+	private static final Log log = LogFactory.getLog(ShiyongDao.class);
 	// property constants
 	public static final String FCHA = "fcha";
 	public static final String FBAGUAN = "fbaguan";
@@ -51,56 +51,56 @@ public class ShiyongDao implements IShiyongDao{
 	}
 
 	public void save(TShiyongs transientInstance) {
-		log.debug("saving TShiyongs instance");
+		log.info("saving TShiyongs instance");
 		try {
 			getCurrentSession().save(transientInstance);
-			log.debug("save successful");
+			log.info("save successful");
 		} catch (RuntimeException re) {
-			log.error("save failed", re);
+			log.info("save failed", re);
 			throw re;
 		}
 	}
 
 	public void delete(TShiyongs persistentInstance) {
-		log.debug("deleting TShiyongs instance");
+		log.info("deleting TShiyongs instance");
 		try {
 			getCurrentSession().delete(persistentInstance);
-			log.debug("delete successful");
+			log.info("delete successful");
 		} catch (RuntimeException re) {
-			log.error("delete failed", re);
+			log.info("delete failed", re);
 			throw re;
 		}
 	}
 
 	public TShiyongs findById(java.lang.String id) {
-		log.debug("getting TShiyongs instance with id: " + id);
+		log.info("getting TShiyongs instance with id: " + id);
 		try {
 			TShiyongs instance = (TShiyongs) getCurrentSession().get(
 					"com.jhms.dao.TShiyongs", id);
 			return instance;
 		} catch (RuntimeException re) {
-			log.error("get failed", re);
+			log.info("get failed", re);
 			throw re;
 		}
 	}
 
 	public List findByExample(TShiyongs instance) {
-		log.debug("finding TShiyongs instance by example");
+		log.info("finding TShiyongs instance by example");
 		try {
 			List results = getCurrentSession()
 					.createCriteria("com.jhms.dao.TShiyongs")
 					.add(Example.create(instance)).list();
-			log.debug("find by example successful, result size: "
+			log.info("find by example successful, result size: "
 					+ results.size());
 			return results;
 		} catch (RuntimeException re) {
-			log.error("find by example failed", re);
+			log.info("find by example failed", re);
 			throw re;
 		}
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding TShiyongs instance with property: " + propertyName
+		log.info("finding TShiyongs instance with property: " + propertyName
 				+ ", value: " + value);
 		try {
 			String queryString = "from TShiyongs as model where model."
@@ -109,7 +109,7 @@ public class ShiyongDao implements IShiyongDao{
 			queryObject.setParameter(0, value);
 			return queryObject.list();
 		} catch (RuntimeException re) {
-			log.error("find by property name failed", re);
+			log.info("find by property name failed", re);
 			throw re;
 		}
 	}
@@ -135,49 +135,49 @@ public class ShiyongDao implements IShiyongDao{
 	}
 
 	public List findAll() {
-		log.debug("finding all TShiyongs instances");
+		log.info("finding all TShiyongs instances");
 		try {
 			String queryString = "from TShiyongs";
 			Query queryObject = getCurrentSession().createQuery(queryString);
 			return queryObject.list();
 		} catch (RuntimeException re) {
-			log.error("find all failed", re);
+			log.info("find all failed", re);
 			throw re;
 		}
 	}
 
 	public TShiyongs merge(TShiyongs detachedInstance) {
-		log.debug("merging TShiyongs instance");
+		log.info("merging TShiyongs instance");
 		try {
 			TShiyongs result = (TShiyongs) getCurrentSession().merge(
 					detachedInstance);
-			log.debug("merge successful");
+			log.info("merge successful");
 			return result;
 		} catch (RuntimeException re) {
-			log.error("merge failed", re);
+			log.info("merge failed", re);
 			throw re;
 		}
 	}
 
 	public void attachDirty(TShiyongs instance) {
-		log.debug("attaching dirty TShiyongs instance");
+		log.info("attaching dirty TShiyongs instance");
 		try {
 			getCurrentSession().saveOrUpdate(instance);
-			log.debug("attach successful");
+			log.info("attach successful");
 		} catch (RuntimeException re) {
-			log.error("attach failed", re);
+			log.info("attach failed", re);
 			throw re;
 		}
 	}
 
 	public void attachClean(TShiyongs instance) {
-		log.debug("attaching clean TShiyongs instance");
+		log.info("attaching clean TShiyongs instance");
 		try {
 			getCurrentSession().buildLockRequest(LockOptions.NONE).lock(
 					instance);
-			log.debug("attach successful");
+			log.info("attach successful");
 		} catch (RuntimeException re) {
-			log.error("attach failed", re);
+			log.info("attach failed", re);
 			throw re;
 		}
 	}
