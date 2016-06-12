@@ -26,7 +26,7 @@ public class AdminService implements IAdminService{
 	 * @return json
 	 */
 	public JSONObject loginService(String name,String pwd){
-		log.debug("开始执行管理员登陆service");
+		log.info("开始执行管理员登陆service");
 		JSONObject jsonResult = new JSONObject();
 		try{
 			TAdmin admin = adminDao.findByNameAndPwd(name, pwd);
@@ -37,10 +37,10 @@ public class AdminService implements IAdminService{
 			else{
 				jsonResult.put("state", "fail");
 			}
-			log.debug("执行管理员登陆service成功");
+			log.info("执行管理员登陆service成功");
 		}catch(Exception e){
 			jsonResult.put("state", "fail");
-			log.error("执行管理员登陆service报错：",e);
+			log.info("执行管理员登陆service报错：",e);
 		}
 		return jsonResult;
 	}

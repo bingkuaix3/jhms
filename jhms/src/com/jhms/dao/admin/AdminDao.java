@@ -26,7 +26,7 @@ import com.jhms.entity.TAdmin;
  * @author MyEclipse Persistence Tools
  */
 @Transactional
-public class AdminDao implements IAdminDao{
+public class AdminDao implements IAdminDao {
 	private static final Logger log = LoggerFactory.getLogger(AdminDao.class);
 	// property constants
 	public static final String FNAME = "fname";
@@ -111,20 +111,20 @@ public class AdminDao implements IAdminDao{
 	}
 
 	public TAdmin findByNameAndPwd(String name, String pwd) {
-		log.debug("finding TAdmin instance with name: " + name
-				+ ", pwd: " + pwd);
+		log.info("finding TAdmin instance with name: " + name + ", pwd: "
+				+ pwd);
 		try {
 			String queryString = "from TAdmin as model where model.fname =? and model.fpwd=?";
 			Query queryObject = getCurrentSession().createQuery(queryString);
 			queryObject.setParameter(0, name);
 			queryObject.setParameter(1, pwd);
-			return (TAdmin)queryObject.list().get(0);
+			return (TAdmin) queryObject.list().get(0);
 		} catch (RuntimeException re) {
-			log.error("find by property name failed", re);
-			throw re;
+			log.info("find by property name failed", re);
+			return null;
 		}
 	}
-	
+
 	public List findByFname(Object fname) {
 		return findByProperty(FNAME, fname);
 	}

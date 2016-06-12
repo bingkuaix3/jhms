@@ -5,8 +5,8 @@
 <struts>
 	<package name="admin" namespace="/admin" extends="json-default">	 
 		<action name="*" class="com.jhms.action.admin.AdminAction" method="{1}">
-			<result name="success">/index.jsp</result>
-			<result name="fail" type="json"></result>
+			<result name="success">/WEB-INF/jsp/clickinfo.jsp</result>
+			<result name="fail">/index.jsp</result>
 		</action>
 	</package>
 </struts>
