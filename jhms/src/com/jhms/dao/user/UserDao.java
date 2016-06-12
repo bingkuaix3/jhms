@@ -146,7 +146,7 @@ public class UserDao implements IUserDao {
 		log.debug("查询用户性别比例数据，时间范围：" + startDate + "至" + endDate);
 		try {
 			String queryString = "select a.fSex as sexType, count(*) as sexAmount "
-					+ "from t_users a  where a.fCreateTime => ? and a.fCreateTime <= ?"
+					+ "from t_users a where a.fCreateTime => ? and a.fCreateTime <= ?"
 					+ "group by a.fSex "
 					+ "order by a.fSex asc";
 			Query queryObject = getCurrentSession().createSQLQuery(queryString);
@@ -163,9 +163,9 @@ public class UserDao implements IUserDao {
 		log.debug("查询用户来源比例数据，时间范围：" + startDate + "至" + endDate);
 		try {
 			String queryString = "select a.fType as sourceType, count(*) as sourceAmount "
-					+ "from t_users a  where a.fCreateTime => ? and a.fCreateTime <= ?"
-					+ "group by a.fSource "
-					+ "order by a.fSource asc";
+					+ "from t_users a where a.fCreateTime => ? and a.fCreateTime <= ?"
+					+ "group by a.fType "
+					+ "order by a.fType asc";
 			Query queryObject = getCurrentSession().createSQLQuery(queryString);
 			queryObject.setParameter(0, startDate);
 			queryObject.setParameter(1, endDate);
